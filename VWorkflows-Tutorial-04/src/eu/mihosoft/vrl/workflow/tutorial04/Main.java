@@ -13,6 +13,7 @@ import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.VNode;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import jfxtras.labs.scene.layout.ScalableContentPane;
 
 /**
@@ -61,6 +62,14 @@ public class Main extends Application {
 
         // create skin factory for flow visualization
         FXSkinFactory fXSkinFactory = new FXSkinFactory(canvas.getContentPane());
+
+        // define connector colors
+        fXSkinFactory.setConnectionFillColor("control", new Color(1.0, 1.0, 0.0, 0.75));
+        fXSkinFactory.setConnectionStrokeColor("control", new Color(120 / 255.0, 140 / 255.0, 1, 0.42));
+        fXSkinFactory.setConnectionFillColor("data", new Color(0.1, 0.1, 0.1, 0.5));
+        fXSkinFactory.setConnectionStrokeColor("data", new Color(120 / 255.0, 140 / 255.0, 1, 0.42));
+        fXSkinFactory.setConnectionFillColor("event", new Color(255.0 / 255.0, 100.0 / 255.0, 1, 0.5));
+        fXSkinFactory.setConnectionStrokeColor("event", new Color(120 / 255.0, 140 / 255.0, 1, 0.42));
 
         // generate the ui for the flow
         flow.addSkinFactories(fXSkinFactory);
@@ -119,10 +128,10 @@ public class Main extends Application {
                     }
                 }
             }
-            
+
             // defines how many nodes per row
             int numNodesPerRow = 3;
-            
+
             // defines the gap between the nodes
             double gap = 30;
 
@@ -131,8 +140,8 @@ public class Main extends Application {
             n.setHeight(200);
 
             // defines the node location
-            n.setX(gap+(i % numNodesPerRow) * (n.getWidth() + gap));
-            n.setY(gap+(i / numNodesPerRow) * (n.getHeight() + gap));
+            n.setX(gap + (i % numNodesPerRow) * (n.getWidth() + gap));
+            n.setY(gap + (i / numNodesPerRow) * (n.getHeight() + gap));
         }
     }
 }
