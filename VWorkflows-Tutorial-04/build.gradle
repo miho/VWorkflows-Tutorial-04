@@ -23,3 +23,14 @@ dependencies {
 
     compile group: 'eu.mihosoft.vrl.workflow-8.0', name: 'vworkflows-fx', version: '0.1-r2-SNAPSHOT', changing: true
 }
+
+// create a fat-jar (class files plus dependencies)
+jar {
+
+    // dependencies except VRL
+    from configurations.runtime.asFileTree.
+        files.collect { zipTree(it) }
+
+    // project class files compiled from source
+    from files(sourceSets.main.output.classesDir)
+}
